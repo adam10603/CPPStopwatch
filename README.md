@@ -13,7 +13,7 @@ The code has been tested on GCC and Clang with `-Wall -Wpedantic -Wextra`, as we
 ## Examples
 
 
-#### Measuring Execution Time
+### Measuring Execution Time
 
 ```cpp
 auto timer = sw::stopwatch();
@@ -30,7 +30,7 @@ std::cout
     << " seconds\n";
 ```
 
-#### "Lap" Timing
+### "Lap" Timing
 
 ```cpp
 auto timer = sw::stopwatch();
@@ -54,7 +54,7 @@ for (int i{}; i < 5; i++) {
 }
 ```
 
-#### Getting Time Components
+### Getting Time Components
 
 ```cpp
 auto timer = sw::stopwatch();
@@ -77,7 +77,7 @@ std::cout
     << "ms ";
 ```
 
-#### Using `convert_time`
+### Using `convert_time`
 
 ```cpp
 using namespace std::literals::chrono_literals;
@@ -102,7 +102,7 @@ std::cout << round_trip_d_sec.count() << '\n';
 ## Reference
 
 
-#### Standalone Types and Functions
+### Standalone Types and Functions
 ```cpp
 using d_seconds         = /* ... */;
 using d_milliseconds    = /* ... */;
@@ -146,7 +146,7 @@ template <typename To, typename From>
 > 
 > *Note: the implementation looks different from the declaration here, but the resulting interface is functionally the same.*
 
-#### The Stopwatch Class
+### The Stopwatch Class
 ```cpp
 template <typename MonotonicTrivialClock>
 class basic_stopwatch;
