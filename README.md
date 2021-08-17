@@ -105,7 +105,7 @@ std::cout << round_trip_d_sec.count() << '\n';
 
 Tests are automatically executed upon every commit, so there's no need to run them yourself.
 
-But if you still want to, the tests can be executed either by running `make` on Linux, or by building the Visual Studio 2019 solution on Windows. They include `-Werror` and `/WX` respectively, alongside with generous warning levels for the sake of correctness. The tests use [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
+If you still want to, the tests can be executed either with `make` on Linux, or by building the Visual Studio 2019 solution on Windows. They include `-Werror` and `/WX` respectively, alongside with generous warning levels for the sake of correctness. The tests use [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
 ## Version history
