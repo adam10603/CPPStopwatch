@@ -55,15 +55,15 @@ template <typename To, typename From>
 ```
 This is for converting between time duration types. There are three ways of using it:
 
- * `To` is `duration_components` and `From` is a version of `std::chrono::duration` (such as the time from a stopwatch object).
+ * `To` is [`duration_components`](#duration_components-struct) and `From` is a version of `std::chrono::duration` (such as the time from a stopwatch object).
 
- * `To` is a version of `std::chrono::duration` and `From` is `duration_components`.
+ * `To` is a version of `std::chrono::duration` and `From` is [`duration_components`](#duration_components-struct).
 
  * Both `To` and `From` are versions of `std::chrono::duration` with different periods, such as seconds and milliseconds.
 
 In all three cases the expected conversion takes place.
 
-The last use case is equivalent to calling `std::chrono::duration_cast<To>(t)`.
+The last use case is equivalent to calling `std::chrono::duration_cast()`.
 
 *Note: the implementation looks different from the declaration here, but the resulting interface is functionally the same.*
 ___
@@ -105,7 +105,7 @@ If the stopwatch is already running, it resets it to 0 and restarts it. This can
 
 If the stopwatch is paused, it resumes it.
 
-The templated version returns the time as `Duration`, which can be `duration_components` or a version of `std::chrono::duration`. The non-template version uses the clock's own duration type.
+The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of `std::chrono::duration`. The non-template version uses the clock's own duration type.
 
 The templated version is a shorthand for `sw::convert_time<Duration>(MySW.start())`.
 ___
@@ -140,6 +140,6 @@ template <typename Duration>
 ```
 Returns the elapsed time.
 
-The templated version returns the time as `Duration`, which can be `duration_components` or a version of `std::chrono::duration`. The non-template version uses the clock's own duration type.
+The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of `std::chrono::duration`. The non-template version uses the clock's own duration type.
 
-The templated version is a shorthand for `sw::convert_time<Duration>(MySW.get_time())`.
+The templated version is a shorthand for [`sw::convert_time`](#convert_time-utility)`<Duration>(MySW.get_time())`.
