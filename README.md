@@ -80,7 +80,7 @@ std::cout
     << "ms ";
 ```
 
-### Using `convert_time`
+### Using `convert_time()`
 
 ```cpp
 using namespace std::literals::chrono_literals;
