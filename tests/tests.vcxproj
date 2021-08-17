@@ -86,7 +86,7 @@
     <IntDir>tmp_vs\</IntDir>
     <TargetName>tests</TargetName>
     <EnableClangTidyCodeAnalysis>true</EnableClangTidyCodeAnalysis>
-    <IncludePath>..\inc;$(IncludePath)</IncludePath>
+    <IncludePath>..\inc;src\catch2;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

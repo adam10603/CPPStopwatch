@@ -1,6 +1,6 @@
 # =========== Compiler config ===========
 CXX			= g++ # clang++ also works
-CXX_FLAGS	= -I../inc -std=c++17 -Wall -Wpedantic -Wextra -Werror -O3
+CXX_FLAGS	= -I../inc -I./src/catch2 -std=c++17 -Wall -Wpedantic -Wextra -Werror -O3
 LD_FLAGS	=
 # =======================================
 
