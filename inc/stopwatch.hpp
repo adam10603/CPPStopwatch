@@ -67,10 +67,10 @@ namespace sw {
 		// ================ End of SFINAE hell
 
 		template <typename ExtractDuration, typename InputDuration, typename Integer>
-		constexpr InputDuration extract_unit(Integer& dst, InputDuration t) noexcept {
+		constexpr InputDuration extract_unit(Integer& dst, InputDuration t, int sign) noexcept {
 			auto extracted = std::chrono::floor<ExtractDuration>(t);
 			t -= std::chrono::duration_cast<InputDuration>(extracted);
-			dst = static_cast<std::remove_reference_t<decltype(dst)>>(extracted.count());
+			dst = static_cast<std::remove_reference_t<decltype(dst)>>(extracted.count()) * sign;
 			return t;
 		}
 
@@ -83,16 +83,24 @@ namespace sw {
 		if constexpr (std::is_same_v<ToDuration, duration_components>) {
 			duration_components ret{};
 
-			t = _internal::extract_unit<_internal::chrono_days>		(ret.days, t);
-			t = _internal::extract_unit<std::chrono::hours>			(ret.hours, t);
-			t = _internal::extract_unit<std::chrono::minutes>		(ret.minutes, t);
-			t = _internal::extract_unit<std::chrono::seconds>		(ret.seconds, t);
-			t = _internal::extract_unit<std::chrono::milliseconds>	(ret.milliseconds, t);
-			t = _internal::extract_unit<std::chrono::microseconds>	(ret.microseconds, t);
-			ret.nanoseconds = static_cast<int>(t.count());
+			// TODO this could be done better
+			auto sign = 1;
+			if (t.count() < Rep()) {
+				t = -t;
+				sign = -1;
+			}
+
+			t = _internal::extract_unit<_internal::chrono_days>(ret.days, t, sign);
+			t = _internal::extract_unit<std::chrono::hours>(ret.hours, t, sign);
+			t = _internal::extract_unit<std::chrono::minutes>(ret.minutes, t, sign);
+			t = _internal::extract_unit<std::chrono::seconds>(ret.seconds, t, sign);
+			t = _internal::extract_unit<std::chrono::milliseconds>(ret.milliseconds, t, sign);
+			t = _internal::extract_unit<std::chrono::microseconds>(ret.microseconds, t, sign);
+			ret.nanoseconds = static_cast<int>(t.count()) * sign;
 
 			return ret;
-		} else {
+		}
+		else {
 			static_assert(_internal::is_chrono_duration_v<ToDuration>, "Invalid duration type");
 			static_assert(!std::is_same_v<ToDuration, std::chrono::duration<Rep, Period>>, "A conversion to the same type is redundant");
 

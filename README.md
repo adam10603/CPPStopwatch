@@ -1,11 +1,11 @@
 # C++ Stopwatch
-![Version](https://img.shields.io/badge/Version-1.0-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.1-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
 
-A portable and flexible C++17 stopwatch class compatible with `std::chrono`.
+A portable and flexible C++17 stopwatch class compatible with `std::chrono` clocks and types.
 
-It doesn't rely on platform-specific functionality, and it will work on any platform with a C++17 compiler.
+It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
-The stopwatch class itself is a template class that can use any clock source of your choosing. For convenience however, there's a specialization that uses `std::chrono::steady_clock`, which should be all you need.
+The stopwatch class itself is a template class that can use any underlying clock type, as long as the clock is monotonic compatible with the clocks found in `std::chrono`. For convenience, there's a pre-defined version that uses `std::chrono::steady_clock`, which should be all you need.
 
 The code has been tested on GCC and Clang with `-Wall -Wpedantic -Wextra`, as well as Visual Studio 2019 with `/Wall` for the sake of correctness.
 
@@ -116,13 +116,13 @@ using d_nanoseconds     = /* ... */;
 ___
 ```cpp
 struct duration_components {
-    int days;           // [0 - (depends on the clock)]
-    int hours;          // [0 - 23]
-    int minutes;        // [0 - 59]
-    int seconds;        // [0 - 59]
-    int milliseconds;   // [0 - 999]
-    int microseconds;   // [0 - 999]
-    int nanoseconds;    // [0 - 999]
+    int days;           // [(depends on the clock)]
+    int hours;          // [-23, 23]
+    int minutes;        // [-59, 59]
+    int seconds;        // [-59, 59]
+    int milliseconds;   // [-999, 999]
+    int microseconds;   // [-999, 999]
+    int nanoseconds;    // [-999, 999]
 };
 ```
 > This represents a time interval broken down into its components. This is useful for printing time in a formatted manner for example.
@@ -219,6 +219,8 @@ template <typename Duration>
 
 * v1.0
   * Initial release
+* v1.1
+  * Added support for negative values in `duration_components` which are now handled correctly when passed to `convert_time()`.
 
 _____________________
 ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-2.png) Licensed under WTFPL v2 (see [COPYING](COPYING)).
