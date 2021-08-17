@@ -77,7 +77,7 @@ std::cout
     << elapsed.seconds
     << "s "
     << elapsed.milliseconds
-    << "ms ";
+    << "ms\n";
 ```
 
 ### Using `convert_time()`
