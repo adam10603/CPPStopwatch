@@ -1,5 +1,5 @@
 # C++ Stopwatch ⏱️
-![Version](https://img.shields.io/badge/Version-1.1-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.1.1-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
 
 A portable and flexible header-only C++17 stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
@@ -109,6 +109,8 @@ std::cout << round_trip_d_sec.count() << '\n';
   * Initial release
 * v1.1
   * Added support for negative values in `duration_components` which are now handled correctly in both directions by `convert_time()`.
+* v1.1.1
+  * Code improvements.
 
 _____________________
 ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-2.png) Licensed under WTFPL v2 (see [COPYING](COPYING)).
