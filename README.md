@@ -10,7 +10,7 @@ The stopwatch class itself is a template class that can use any underlying clock
 The code has been tested on GCC and Clang with `-Wall -Wpedantic -Wextra`, as well as Visual Studio 2019 with `/Wall` for the sake of correctness.
 
 
-## [👉 API reference](Reference.md)
+## [API reference 🔗](Reference.md)
 
 
 ## Examples
