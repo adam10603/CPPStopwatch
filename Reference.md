@@ -3,7 +3,7 @@
 
 Note that the library lives inside the `sw` namespace, but the namespace is being omitted here for simplicity.
 
-Table of contents:
+#### Table of contents:
   * [Standalone Types and Functions](#standalone-types-and-functions)
     * [`std::chrono::duration` types](#stdchronoduration-types)
 
