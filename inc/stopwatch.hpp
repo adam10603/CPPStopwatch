@@ -55,11 +55,21 @@ namespace sw {
 
 
 		template <typename T>
+		struct is_ratio : std::false_type {};
+
+		template <std::intmax_t Num, std::intmax_t Den>
+		struct is_ratio<std::ratio<Num, Den>> : std::true_type {};
+
+		template <typename T>
+		inline constexpr bool is_ratio_v = is_ratio<T>::value;
+
+
+
+		template <typename T>
 		struct is_trivial_clock :
 			std::integral_constant<bool, (
 				std::is_arithmetic_v<typename T::rep> &&
-				std::is_integral_v<decltype(T::period::num)> &&
-				std::is_integral_v<decltype(T::period::den)> &&
+				is_ratio_v<typename T::period> &&
 				std::is_same_v<typename T::duration, std::chrono::duration<typename T::rep, typename T::period>> &&
 				is_chrono_time_point_v<typename T::time_point> &&
 				std::is_same_v<decltype(T::is_steady), const bool> &&
@@ -154,7 +164,7 @@ namespace sw {
 
 		static constexpr typename Clock::time_point zero_time_point = typename Clock::time_point();
 
-		static bool has_value(const typename Clock::time_point& t) noexcept {
+		static constexpr bool has_value(const typename Clock::time_point& t) noexcept {
 			return t != zero_time_point;
 		}
 
@@ -195,7 +205,7 @@ namespace sw {
 
 		// Pauses the stopwatch.
 		void pause() noexcept {
-			if (!has_value(m_pause_start) && has_value(m_start)) {
+			if (!is_paused()) {
 				m_pause_start = Clock::now();
 			}
 		}
@@ -208,7 +218,7 @@ namespace sw {
 
 		// Indicates if the stopwatch is paused.
 		[[nodiscard]] auto is_paused() const noexcept {
-			return has_value(m_pause_start);
+			return has_value(m_pause_start) || !has_value(m_start);
 		}
 
 		// Returns the elapsed time.
