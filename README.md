@@ -220,7 +220,7 @@ template <typename Duration>
 * v1.0
   * Initial release
 * v1.1
-  * Added support for negative values in `duration_components` which are now handled correctly when passed to `convert_time()`.
+  * Added support for negative values in `duration_components` which are now handled correctly in both directions by `convert_time()`.
 
 _____________________
 ![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-2.png) Licensed under WTFPL v2 (see [COPYING](COPYING)).
