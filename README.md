@@ -1,16 +1,16 @@
-# C++ Stopwatch
+# C++ Stopwatch ⏱️
 ![Version](https://img.shields.io/badge/Version-1.1-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
 
 A portable and flexible C++17 stopwatch class compatible with `std::chrono` clocks and types.
 
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
-The stopwatch class itself is a template class that can use any underlying clock type, as long as the clock is monotonic compatible with the clocks found in `std::chrono`. For convenience, there's a pre-defined version that uses `std::chrono::steady_clock`, which should be all you need.
+The stopwatch class itself is a template class that can use any underlying clock type, as long as the clock is monotonic compatible with the clocks found in `std::chrono`. For convenience, there's a pre-defined version that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock), which should be all you need.
 
 The code has been tested on GCC and Clang with `-Wall -Wpedantic -Wextra`, as well as Visual Studio 2019 with `/Wall` for the sake of correctness.
 
 
-## [API reference](Reference.md)
+## [👉 API reference](Reference.md)
 
 
 ## Examples

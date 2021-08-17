@@ -26,7 +26,7 @@ using d_milliseconds    = /* ... */;
 using d_microseconds    = /* ... */;
 using d_nanoseconds     = /* ... */;
 ```
-These are handy type definitions for the units of time indicated by the names. They are all specializations of `std::chrono::duration` with `double` as the representation type.
+These are handy type definitions for the units of time indicated by the names. They are all specializations of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) with `double` as the representation type.
 
 A stopwatch object can return the time as one of these types (among others).
 ___
@@ -55,15 +55,15 @@ template <typename To, typename From>
 ```
 This is for converting between time duration types. There are three ways of using it:
 
- * `To` is [`duration_components`](#duration_components-struct) and `From` is a version of `std::chrono::duration` (such as the time from a stopwatch object).
+ * `To` is [`duration_components`](#duration_components-struct) and `From` is a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) (such as the time from a stopwatch object).
 
- * `To` is a version of `std::chrono::duration` and `From` is [`duration_components`](#duration_components-struct).
+ * `To` is a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) and `From` is [`duration_components`](#duration_components-struct).
 
- * Both `To` and `From` are versions of `std::chrono::duration` with different periods, such as seconds and milliseconds.
+ * Both `To` and `From` are versions of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) with different periods, such as seconds and milliseconds.
 
 In all three cases the expected conversion takes place.
 
-The last use case is equivalent to calling `std::chrono::duration_cast()`.
+The last use case is equivalent to calling [`std::chrono::duration_cast()`](https://en.cppreference.com/w/cpp/chrono/duration/duration_cast) in the same manner.
 
 *Note: the implementation looks different from the declaration here, but the resulting interface is functionally the same.*
 ___
@@ -82,14 +82,14 @@ using stopwatch = basic_stopwatch<std::chrono::steady_clock>;
 
 `MonotonicTrivialClock` has to be a clock type that's monotonic and satisfies [*TrivialClock*](https://en.cppreference.com/w/cpp/named_req/TrivialClock) requirements. Monotonic means it's non-decreasing, indicated by its `is_steady` member.
 
-`stopwatch` is a specialization that uses `std::chrono::steady_clock`. **For all intents and purposes `stopwatch` is what you'll want to use**, unless you have specific needs regarding the underlying clock.
+`stopwatch` is a specialization that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock). **For all intents and purposes `stopwatch` is what you'll want to use**, unless you have specific needs regarding the underlying clock.
 ___
 
 #### Constructor
 ```cpp
 /* constructor */ = default;
 ```
-The stopwatch class has no constructor defined. After creating an instance, you have to start it manually by calling its `start()` method.
+The stopwatch class has no constructor defined. After creating an instance, you have to start it manually by calling its [`start()`](#start-method) method.
 ___
 
 #### `start()` method
@@ -105,9 +105,9 @@ If the stopwatch is already running, it resets it to 0 and restarts it. This can
 
 If the stopwatch is paused, it resumes it.
 
-The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of `std::chrono::duration`. The non-template version uses the clock's own duration type.
+The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration). The non-template version uses the clock's own duration type.
 
-The templated version is a shorthand for `sw::convert_time<Duration>(MySW.start())`.
+The templated version is a shorthand for [`convert_time<Duration>(MySW.start())`](#convert_time-utility).
 ___
 
 #### `pause()` method
@@ -140,6 +140,6 @@ template <typename Duration>
 ```
 Returns the elapsed time.
 
-The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of `std::chrono::duration`. The non-template version uses the clock's own duration type.
+The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration). The non-template version uses the clock's own duration type.
 
-The templated version is a shorthand for [`sw::convert_time`](#convert_time-utility)`<Duration>(MySW.get_time())`.
+The templated version is a shorthand for [`convert_time<Duration>(MySW.get_time())`](#convert_time-utility).
