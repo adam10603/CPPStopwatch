@@ -1,5 +1,5 @@
 # C++ Stopwatch ⏱️
-![Version](https://img.shields.io/badge/Version-1.1.2-green.svg) ![License](https://img.shields.io/badge/License-WTFPL%20v2-blue.svg)
+![Version](https://img.shields.io/badge/Version-1.1.2-green.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/c-cpp.yml/badge.svg)
 
 A portable and flexible header-only C++17 stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
