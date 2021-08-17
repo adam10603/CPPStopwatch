@@ -28,7 +28,7 @@ using d_nanoseconds     = /* ... */;
 ```
 These are handy type definitions for the units of time indicated by the names. They are all specializations of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) with `double` as the representation type.
 
-A stopwatch object can return the time as one of these types (among others).
+A stopwatch object can return the time as any of these types (among others).
 ___
 
 #### `duration_components` struct
