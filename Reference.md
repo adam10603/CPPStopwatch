@@ -1,6 +1,8 @@
 ## Reference
 
 
+Note that the library lives inside the `sw` namespace, but the namespace is being omitted here for simplicity.
+
 ### Standalone Types and Functions
 
 #### `std::chrono::duration` types
