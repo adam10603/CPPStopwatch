@@ -26,6 +26,8 @@ namespace sw {
 
 		// ================ Start of SFINAE hell
 
+		// TODO will simplify this at some point
+
 		template <class T, template <class...> class Template>
 		struct is_template_instance_of : std::false_type {};
 
