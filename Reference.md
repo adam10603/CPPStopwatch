@@ -5,7 +5,7 @@ Note that the library lives inside the `sw` namespace, but the namespace is bein
 
 Table of contents:
   * [Standalone Types and Functions](#standalone-types-and-functions)
-    * [`std::chrono::duration` types](#std::chrono::duration-types)
+    * [`std::chrono::duration` types](#std-chrono-duration-types)
 
 ### Standalone Types and Functions
 
