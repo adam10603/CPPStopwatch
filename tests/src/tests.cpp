@@ -160,7 +160,7 @@ namespace {
 
 		REQUIRE(ret1);
 		REQUIRE(ret2);
-		REQUIRE(ret3);
+		REQUIRE(!ret3);
 	}
 
 	void case_4(sw::stopwatch timer = sw::stopwatch()) {
