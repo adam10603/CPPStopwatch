@@ -5,7 +5,7 @@ A portable and flexible C++17 stopwatch class compatible with [`std::chrono`](ht
 
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
-The stopwatch class itself is a template class that can use any underlying clock, as long as it's a compatible clock type. For convenience, there's a pre-defined version that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock), which should be all you need.
+The stopwatch class itself is a template class that can use any underlying clock, as long as it's a compatible clock type. For convenience, there's a type definition that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock), which should be all you need.
 
 The code has been tested on GCC and Clang with `-Wall -Wpedantic -Wextra`, as well as Visual Studio 2019 with `/Wall` for the sake of correctness.
 
