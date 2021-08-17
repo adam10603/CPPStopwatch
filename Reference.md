@@ -89,7 +89,7 @@ ___
 ```cpp
 /* constructor */ = default;
 ```
-The stopwatch class has no constructor defined. After creating an instance, you have to start it manually by calling its [`start()`](#start-method) method.
+The stopwatch class has no constructor defined. After creating an instance, it will be in a paused state with a time of 0. You have to start it manually by calling its [`start()`](#start-method) method.
 ___
 
 #### `start()` method
@@ -121,7 +121,7 @@ ___
 ```cpp
 void reset();
 ```
-Resets the stopwatch. Regardless of its current state, the state after resetting will be the same as a newly constructed instance.
+Resets the stopwatch. Regardless of its current state, the state after resetting will be the same as a newly constructed instance. See [Constructor](#constructor).
 ___
 
 #### `is_paused()` method
