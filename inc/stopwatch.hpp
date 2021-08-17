@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2021 Adam D.
+ * Distributed under the MIT license.
+ * See accompanying file "LICENSE" or a copy at https://mit-license.org/
+ */
+
 #ifndef _A_STOPWATCH_HPP_
 #define _A_STOPWATCH_HPP_
 
