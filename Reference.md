@@ -1,11 +1,21 @@
-## Reference
+## C++ Stopwatch API Reference
 
 
-Note that the library lives inside the `sw` namespace, but the namespace is being omitted here for simplicity.
+Note that everything lives inside the `sw` namespace, but the namespace is being omitted here for simplicity.
 
 #### Table of contents:
   * [Standalone Types and Functions](#standalone-types-and-functions)
     * [`std::chrono::duration` types](#stdchronoduration-types)
+    * [`duration_components` struct](#duration_components-struct)
+    * [`convert_time()` utility](#convert_time-utility)
+  * [The Stopwatch Class](#the-stopwatch-class)
+    * [Constructor](#constructor)
+    * [`start()` method](#start-method)
+    * [`pause()` method](#pause-method)
+    * [`reset()` method](#reset-method)
+    * [`is_paused()` method](#is_paused-method)
+    * [`get_time()` method](#get_time-method)
+
 
 ### Standalone Types and Functions
 
