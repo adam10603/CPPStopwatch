@@ -49,7 +49,7 @@ This is for converting between time duration types. There are three ways of usin
 
 In all three cases the expected conversion takes place.
 
-The last one is equivalent to calling `std::chrono::duration_cast<To>(t)`.
+The last use case is equivalent to calling `std::chrono::duration_cast<To>(t)`.
 
 *Note: the implementation looks different from the declaration here, but the resulting interface is functionally the same.*
 ___
