@@ -85,9 +85,9 @@ using namespace std::literals::chrono_literals;
 
 auto starting_time      = 1002ms;
 
-auto components         = sw::convert_time<sw::duration_components>(starting_time);
-auto round_trip         = sw::convert_time<std::chrono::milliseconds>(components);
-auto round_trip_d_sec   = sw::convert_time<sw::d_seconds>(round_trip);
+auto components         = sw::convert_time<sw::duration_components>   (starting_time);
+auto round_trip         = sw::convert_time<std::chrono::milliseconds> (components);
+auto round_trip_d_sec   = sw::convert_time<sw::d_seconds>             (round_trip);
 
 // Prints 1 2
 std::cout << components.seconds << ' ' << components.milliseconds << '\n';

@@ -210,7 +210,7 @@ namespace sw {
 			}
 		}
 
-		// Resets the stopwatch. It has to be started again with start() after this.
+		// Resets the stopwatch. It will be in a paused state with a time of 0 after this.
 		void reset() noexcept {
 			m_start			= zero_time_point;
 			m_pause_start	= zero_time_point;
