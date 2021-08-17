@@ -99,9 +99,9 @@ MonotonicTrivialClock::duration start();
 template <typename Duration>
 Duration start();
 ```
-Starts or restarts the stopwatch, and returns the elapsed time (taken before the restart).
+Starts or restarts the stopwatch, and returns the elapsed time up until that point.
 
-If the stopwatch is already running, it resets it to 0 and restarts it. This works as a "lap" function since it returns the elapsed time at the point of resetting.
+If the stopwatch is already running, it resets it to 0 and restarts it. This can be used as a "lap" function as well.
 
 If the stopwatch is paused, it resumes it.
 
