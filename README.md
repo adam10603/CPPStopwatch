@@ -45,7 +45,7 @@ for (int i{}; i < 5; i++) {
 
     // start() restarts the stopwatch and returns the elapsed time.
     // The template type determines what unit of time it returns.
-    // The templated version is just a shorthand for sw::convert_time<T>(timer.start())
+    // timer.start<T>() a shorthand for sw::convert_time<T>(timer.start())
     auto elapsed = timer.start<sw::d_milliseconds>();
 
     std::cout
@@ -66,7 +66,7 @@ timer.start();
 
 some_work();
 
-// The templated version is a shorthand for sw::convert_time<T>(timer.get_time())
+// timer.get_time<T>() is a shorthand for sw::convert_time<T>(timer.get_time())
 auto elapsed = timer.get_time<sw::duration_components>();
 
 std::cout
