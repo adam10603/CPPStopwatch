@@ -3,26 +3,25 @@
 
 A portable and flexible header-only C++17 stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
+Just include `stopwatch.hpp` in your project and you can use it right away.
+
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
 
 ## Why Need Another One?
 
 
-There are a number of stopwatch classes online, but the ones I've seen all had a questionable implementation. For example, even if we ignore ones that use non-portable time APIs, a lot of them are hard-coded to use [`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock). This might not be suitable for these interval measurements at all, since platforms are free to implement it as a non-monotonic clock.
-
-A lot of stopwatch classes out there are also riddled with non-standard code (`#pragma once`), unsafe type conversions, and more. This is why I decided to implement one in a way I find more appropriate.
+There are many examples of stopwatch classes online, but the ones I've seen all had a questionable implementation. A lot of them have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such, depending on the platform), non-standard code (like `#pragma once`), unsafe type conversions and arithmetic, and more. This is why I decided to implement one in a way I see more appropriate.
 
 Highlights:
   * Very simple yet flexible API.
   * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
-  * A custom `duration_components` type that makes formatted output easy.
+  * A custom `duration_components` type for easy formatted output.
   * Free choice of underlying clock source.
-    * You can provide a clock type to `basic_stopwatch` as a template argument.
-    * The type has to satisfy [*TrivialClock*](https://en.cppreference.com/w/cpp/named_req/TrivialClock), and has to be monotonic (`is_steady`).
-    * If you don't need this, there's a ready-to-go type alias `stopwatch` that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
-  * Correct and type-safe conversions, all done with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
-  * Tests are compiled using `-Wall -Wpedantic -Wextra -Werror` with GCC, and `/W4 /WX` with Visual Studio for correctness.
+    * `basic_stopwatch` takes a clock type as a template argument.
+    * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
+  * Type-safe conversions all done with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
+  * Test-driven development using [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
 ## [API Reference Page 🔗](Reference.md)
@@ -122,7 +121,7 @@ std::cout << round_trip_double_sec.count() << '\n';
 
 Tests are automatically executed upon every commit (see [Actions](https://github.com/adam10603/CPPStopwatch/actions/workflows/c-cpp.yml)), so there's no need to run them yourself.
 
-If you still want to, the tests can be executed either with `make` on Linux, or by building the Visual Studio 2019 solution on Windows. The tests use [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
+If you still want to, the tests can be executed either with `make` on Linux, or by building the Visual Studio 2019 solution on Windows. They include `-Werror` and `/WX` respectively, alongside with generous warning levels for correctness. The tests use [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
 ## Version history
