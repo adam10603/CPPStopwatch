@@ -33,7 +33,7 @@ namespace sw {
 		int nanoseconds{};
 	};
 
-	// Internal helper utilities. Do not use these!
+	// DO NOT USE! Internal helper utilities.
 	namespace detail {
 
 		// ================ Start of SFINAE hell
