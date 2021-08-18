@@ -8,7 +8,7 @@ Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use 
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
 
-## [API Reference Page 🔗](Reference.md)
+## [API Reference Page 🔗](Reference.md) 
 
 
 ## Purpose
