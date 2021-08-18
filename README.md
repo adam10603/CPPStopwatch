@@ -3,7 +3,7 @@
 
 A portable and flexible header-only C++17 stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
-Just include `stopwatch.hpp` in your project and you can use it right away.
+Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use it right away.
 
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
