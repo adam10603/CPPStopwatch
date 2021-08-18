@@ -8,10 +8,13 @@ Just include `stopwatch.hpp` in your project and you can use it right away.
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
 
-## Why Use This One?
+## [API Reference Page 🔗](Reference.md)
 
 
-There are many examples of stopwatch classes online, but a lot of the ones I've seen had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions and arithmetic, and more. This is why I decided to implement one in a way I see more appropriate.
+## Why Make Another Stopwatch?
+
+
+Simply put, a lot of examples I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe type conversions, and more. This is why I thought I'd implement one in a way I see more fit. Plus it was an interesting side-project regardless.
 
 #### Highlights:
   * Very simple yet flexible API.
@@ -21,10 +24,7 @@ There are many examples of stopwatch classes online, but a lot of the ones I've 
     * `basic_stopwatch` takes a clock type as a template argument.
     * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
   * Type-safe conversions all done with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
-  * Test-driven development using [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
-
-
-## [API Reference Page 🔗](Reference.md)
+  * Verified against many test cases with [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
 ## Examples
