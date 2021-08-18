@@ -14,17 +14,16 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Purpose
 
 
-A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, inefficient code generation and more. This is why I decided to implement one in a way I see more appropriate. I mostly made this for myself, but I hope others find it just as useful.
+A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, inefficient code generation and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others find it useful as well.
 
 #### Highlights:
-  * Very simple yet flexible API.
-  * Zero-overhead. Most compilers can optimize the library away entirely, thanks to the way its written.
+  * Simple yet flexible API.
+  * Zero-overhead. Most compilers can optimize the library away entirely.
   * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
   * A custom `duration_components` type that helps with formatted output.
-  * Option to use any underlying clock source.
-    * `basic_stopwatch` takes a clock type as a template argument.
+  * Option to use any clock type via a template parameter.
     * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
-  * Type-safe conversions all done with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
+  * Type-safety and correctness through using [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
   * Verified with tests using [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
@@ -140,7 +139,7 @@ If you still want to, the tests can be executed either with `make` on Linux, or 
   * Renamed the `get_time()` method to `get_elapsed()`. This better reflects that this is a duration.
   * Added `clock` member type to the class, which is an alias for the underlying clock type.
 * v1.2.1
-  * Lifted a restriction in `convert_time()` that wouldn't allow a `std::chrono::duration` type to be converted to the same type.
+  * Removed a restriction in `convert_time()` that wouldn't allow a `std::chrono::duration` type to be converted to the same type.
 
 _____________________
 ![MIT Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/32px-MIT_logo.svg.png) Distributed under the [MIT License](LICENSE).
