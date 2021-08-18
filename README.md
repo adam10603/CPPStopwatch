@@ -11,7 +11,7 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Why Need Another One?
 
 
-There are many examples of stopwatch classes online, but the ones I've seen all had a questionable implementation. A lot of them have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such, depending on the platform), non-standard code (like `#pragma once`), unsafe type conversions and arithmetic, and more. This is why I decided to implement one in a way I see more appropriate.
+There are many examples of stopwatch classes online, but a lot of the ones I've seen had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions and arithmetic, and more. This is why I decided to implement one in a way I see more appropriate.
 
 Highlights:
   * Very simple yet flexible API.
