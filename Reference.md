@@ -10,6 +10,7 @@ Note that everything lives inside the `sw` namespace, but the namespace is being
     * [`convert_time()` utility](#convert_time-utility)
   * [The Stopwatch Class](#the-stopwatch-class)
     * [Constructor](#constructor)
+    * [`clock` member type](#clock-member-type)
     * [`start()` method](#start-method)
     * [`pause()` method](#pause-method)
     * [`reset()` method](#reset-method)

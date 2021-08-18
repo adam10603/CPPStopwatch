@@ -101,7 +101,7 @@ namespace sw {
 			return t;
 		}
 
-		using chrono_days = std::chrono::duration<int, std::ratio<60 * 60 * 24>>; // Why doesn't this exist?
+		using chrono_days = std::chrono::duration<int, std::ratio<86400>>; // Why doesn't this exist?
 
 	}
 
@@ -112,20 +112,20 @@ namespace sw {
 			duration_components ret{};
 
 			if (t.count() < Rep()) {
-				t = detail::extract_unit<true, detail::chrono_days>			(ret.days, t);
-				t = detail::extract_unit<true, std::chrono::hours>			(ret.hours, t);
-				t = detail::extract_unit<true, std::chrono::minutes>		(ret.minutes, t);
-				t = detail::extract_unit<true, std::chrono::seconds>		(ret.seconds, t);
-				t = detail::extract_unit<true, std::chrono::milliseconds>	(ret.milliseconds, t);
-				t = detail::extract_unit<true, std::chrono::microseconds>	(ret.microseconds, t);
+				t = detail::extract_unit<true, detail::chrono_days>			(ret.days,			t);
+				t = detail::extract_unit<true, std::chrono::hours>			(ret.hours,			t);
+				t = detail::extract_unit<true, std::chrono::minutes>		(ret.minutes,		t);
+				t = detail::extract_unit<true, std::chrono::seconds>		(ret.seconds,		t);
+				t = detail::extract_unit<true, std::chrono::milliseconds>	(ret.milliseconds,	t);
+				t = detail::extract_unit<true, std::chrono::microseconds>	(ret.microseconds,	t);
 				ret.nanoseconds = static_cast<int>(t.count());
 			} else {
-				t = detail::extract_unit<false, detail::chrono_days>		(ret.days, t);
-				t = detail::extract_unit<false, std::chrono::hours>			(ret.hours, t);
-				t = detail::extract_unit<false, std::chrono::minutes>		(ret.minutes, t);
-				t = detail::extract_unit<false, std::chrono::seconds>		(ret.seconds, t);
-				t = detail::extract_unit<false, std::chrono::milliseconds>	(ret.milliseconds, t);
-				t = detail::extract_unit<false, std::chrono::microseconds>	(ret.microseconds, t);
+				t = detail::extract_unit<false, detail::chrono_days>		(ret.days,			t);
+				t = detail::extract_unit<false, std::chrono::hours>			(ret.hours,			t);
+				t = detail::extract_unit<false, std::chrono::minutes>		(ret.minutes,		t);
+				t = detail::extract_unit<false, std::chrono::seconds>		(ret.seconds,		t);
+				t = detail::extract_unit<false, std::chrono::milliseconds>	(ret.milliseconds,	t);
+				t = detail::extract_unit<false, std::chrono::microseconds>	(ret.microseconds,	t);
 				ret.nanoseconds = static_cast<int>(t.count());
 			}
 
@@ -147,13 +147,13 @@ namespace sw {
 
 		auto ret = ToDuration();
 
-		ret += std::chrono::duration_cast<ToDuration>(detail::chrono_days(t.days));
-		ret += std::chrono::duration_cast<ToDuration>(std::chrono::hours(t.hours));
-		ret += std::chrono::duration_cast<ToDuration>(std::chrono::minutes(t.minutes));
-		ret += std::chrono::duration_cast<ToDuration>(std::chrono::seconds(t.seconds));
-		ret += std::chrono::duration_cast<ToDuration>(std::chrono::milliseconds(t.milliseconds));
-		ret += std::chrono::duration_cast<ToDuration>(std::chrono::microseconds(t.microseconds));
-		ret += std::chrono::duration_cast<ToDuration>(std::chrono::nanoseconds(t.nanoseconds));
+		ret += std::chrono::duration_cast<ToDuration>(detail::chrono_days		(t.days));
+		ret += std::chrono::duration_cast<ToDuration>(std::chrono::hours		(t.hours));
+		ret += std::chrono::duration_cast<ToDuration>(std::chrono::minutes		(t.minutes));
+		ret += std::chrono::duration_cast<ToDuration>(std::chrono::seconds		(t.seconds));
+		ret += std::chrono::duration_cast<ToDuration>(std::chrono::milliseconds	(t.milliseconds));
+		ret += std::chrono::duration_cast<ToDuration>(std::chrono::microseconds	(t.microseconds));
+		ret += std::chrono::duration_cast<ToDuration>(std::chrono::nanoseconds	(t.nanoseconds));
 
 		return ret;
 	}
@@ -218,9 +218,9 @@ namespace sw {
 		static_assert(clock::is_steady, "Only monotonic clocks can be used");
 		static_assert(detail::is_trivial_clock_v<clock>, "Clock must satisfy the requirements of TrivialClock");
 
-		typename clock::time_point m_start{}, m_pause_start{};
+		typename clock::time_point m_start{ clock::duration::zero() }, m_pause_start{ clock::duration::zero() };
 
-		static constexpr typename clock::time_point zero_time_point = typename clock::time_point();
+		static constexpr typename clock::time_point zero_time_point = typename clock::time_point{ clock::duration::zero() };
 
 		static constexpr bool has_value(const typename clock::time_point& t) noexcept {
 			return t != zero_time_point;
