@@ -7,7 +7,7 @@ Note that everything lives inside the `sw` namespace, but the namespace is being
   * [Standalone Types and Functions](#standalone-types-and-functions)
     * [`std::chrono::duration` types](#stdchronoduration-types)
     * [`duration_components` struct](#duration_components-struct)
-    * [`convert_time()` utility](#convert_time-utility)
+    * [`convert_time()` function](#convert_time-function)
   * [The Stopwatch Class](#the-stopwatch-class)
     * [Constructor](#constructor)
     * [`clock` member type](#clock-member-type)
@@ -49,7 +49,7 @@ This represents a time interval broken down into its components. This is useful 
 A stopwatch object can return the time as this type (among others).
 ___
 
-#### `convert_time()` utility
+#### `convert_time()` function
 ```cpp
 template <typename To, typename From>
 [[nodiscard]] constexpr To convert_time(From t);

@@ -14,18 +14,18 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Purpose
 
 
-A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions, inefficient code generation and more. This is why I decided to implement one in a way I see more fit. I mostly made this for myself, but I hope others find it just as useful.
+A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, inefficient code generation and more. This is why I decided to implement one in a way I see more appropriate. I mostly made this for myself, but I hope others find it just as useful.
 
 #### Highlights:
   * Very simple yet flexible API.
-  * Zero-overhead. Most compilers can optimize away the class entirely, thanks to the way its written.
+  * Zero-overhead. Most compilers can optimize the library away entirely, thanks to the way its written.
   * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
-  * A custom `duration_components` type for easy formatted output.
-  * Free choice of underlying clock source.
+  * A custom `duration_components` type that helps with formatted output.
+  * Option to use any underlying clock source.
     * `basic_stopwatch` takes a clock type as a template argument.
     * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
   * Type-safe conversions all done with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
-  * Verified against many test cases with [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
+  * Verified with tests using [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
 ## Examples
