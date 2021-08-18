@@ -133,9 +133,9 @@ namespace sw {
 		}
 		else {
 			static_assert(detail::is_chrono_duration_v<ToDuration>, "Invalid duration type");
-			static_assert(!std::is_same_v<ToDuration, std::chrono::duration<Rep, Period>>, "A conversion to the same type is redundant");
-
-			return std::chrono::duration_cast<ToDuration>(t);
+			
+			if constexpr (std::is_same_v<ToDuration, std::chrono::duration<Rep, Period>>) return t;
+			else return std::chrono::duration_cast<ToDuration>(t);
 		}
 	}
 

@@ -1,5 +1,5 @@
 # C++ Stopwatch ⏱️
-![Version](https://img.shields.io/badge/Version-1.2-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
+![Version](https://img.shields.io/badge/Version-1.2.1-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
 A portable, flexible and performant header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono).
 
@@ -137,8 +137,10 @@ If you still want to, the tests can be executed either with `make` on Linux, or 
 * v1.1.2
   * More code improvements.
 * v1.2
-  * Renamed `get_time()` to `get_elapsed()`. This better reflects that this is a duration.
-  * Added `clock` member type, which is an alias for the underlying clock type.
+  * Renamed the `get_time()` method to `get_elapsed()`. This better reflects that this is a duration.
+  * Added `clock` member type to the class, which is an alias for the underlying clock type.
+* v1.2.1
+  * Lifted a restriction in `convert_time()` that wouldn't allow a `std::chrono::duration` type to be converted to the same type.
 
 _____________________
 ![MIT Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/32px-MIT_logo.svg.png) Distributed under the [MIT License](LICENSE).
