@@ -1,7 +1,7 @@
 # C++ Stopwatch ⏱️
 ![Version](https://img.shields.io/badge/Version-1.2-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
-A portable and flexible header-only C++17 stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
+A portable, flexible and performant header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono).
 
 Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use it right away.
 
@@ -14,10 +14,11 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Purpose
 
 
-A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions, and more. This is why I decided to implement one in a way I see more fit. I mostly made this for myself, but I hope others find it just as useful.
+A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions, inefficient code generation and more. This is why I decided to implement one in a way I see more fit. I mostly made this for myself, but I hope others find it just as useful.
 
 #### Highlights:
   * Very simple yet flexible API.
+  * Zero-overhead. Most compilers can optimize away the class entirely, thanks to the way its written.
   * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
   * A custom `duration_components` type for easy formatted output.
   * Free choice of underlying clock source.
