@@ -117,157 +117,129 @@ void static_test_5() {
 
 
 #include <thread>
-#include <tuple>
 
-namespace {
+TEST_CASE("start() when idle and running + multiple start() calls") {
+	auto timer = sw::stopwatch();
 
-	void case_1(sw::stopwatch timer = sw::stopwatch()) {
-		timer.start();
+	timer.start();
 
-		std::this_thread::sleep_for(100ms);
+	std::this_thread::sleep_for(100ms);
 
-		auto t1 = timer.start();
-		auto t2 = timer.start();
+	auto t1 = timer.start();
+	auto t2 = timer.start();
 
-		REQUIRE((t1 > 50ms && t1 < 150ms));
-		REQUIRE((t2 < 50ms));
-	}
-
-	void case_2(sw::stopwatch timer = sw::stopwatch()) {
-		timer.start();
-
-		std::this_thread::sleep_for(100ms);
-
-		timer.pause();
-
-		std::this_thread::sleep_for(100ms);
-
-		auto t1 = timer.start();
-
-		REQUIRE((t1 > 50ms && t1 < 150ms));
-	}
-
-	void case_3(sw::stopwatch timer = sw::stopwatch()) {
-		auto ret1 = timer.is_paused();
-
-		timer.start();
-
-		auto ret2 = !timer.is_paused();
-
-		timer.pause();
-
-		auto ret3 = timer.is_paused();
-
-		REQUIRE(ret1);
-		REQUIRE(ret2);
-		REQUIRE(ret3);
-	}
-
-	void case_4(sw::stopwatch timer = sw::stopwatch()) {
-		auto t1 = timer.start();
-
-		std::this_thread::sleep_for(100ms);
-
-		timer.reset();
-		auto t2 = timer.start();
-
-		std::this_thread::sleep_for(100ms);
-
-		timer.pause();
-		timer.reset();
-		auto t3 = timer.start();
-
-		std::this_thread::sleep_for(100ms);
-
-		auto t4 = timer.start();
-
-		REQUIRE((t1 >= t2));
-		REQUIRE((t2 == t3));
-		REQUIRE((t4 > 50ms && t4 < 150ms));
-	}
-
-	void case_5(sw::stopwatch timer = sw::stopwatch()) {
-		timer.start();
-
-		std::this_thread::sleep_for(100ms);
-
-		auto t1 = timer.get_time();
-		auto t2 = timer.get_time();
-
-		REQUIRE((t1 > 50ms && t1 < 150ms));
-		REQUIRE((t2 >= t1));
-		REQUIRE(((t2 - t1) < 50ms));
-	}
-
-	void run_all_with_dirty_stopwatch(sw::stopwatch& timer) {
-		case_1(timer);
-		case_2(timer);
-		case_3(timer);
-		case_4(timer);
-		case_5(timer);
-	}
-
+	REQUIRE((t1 > 50ms && t1 < 150ms));
+	REQUIRE((t2 < 50ms));
 }
 
-TEST_CASE("start() when idle and running") {
-	case_1();
-}
+TEST_CASE("pause() + start() when paused + multiple start() calls") {
+	auto timer = sw::stopwatch();
 
-TEST_CASE("pause()") {
-	case_2();
+	timer.start();
+
+	std::this_thread::sleep_for(100ms);
+
+	timer.pause();
+
+	std::this_thread::sleep_for(100ms);
+
+	auto t1 = timer.start();
+
+	std::this_thread::sleep_for(100ms);
+
+	auto t2 = timer.start();
+
+	REQUIRE((t1 > 50ms && t1 < 150ms));
+	REQUIRE((t2 > 150ms && t2 < 250ms));
 }
 
 TEST_CASE("is_paused()") {
-	case_3();
+	auto timer = sw::stopwatch();
+
+	auto ret1 = timer.is_paused();
+
+	timer.start();
+
+	auto ret2 = !timer.is_paused();
+
+	timer.pause();
+
+	auto ret3 = timer.is_paused();
+
+	REQUIRE(ret1);
+	REQUIRE(ret2);
+	REQUIRE(ret3);
 }
 
 TEST_CASE("reset()") {
-	case_4();
+	auto timer = sw::stopwatch();
+
+	auto t1 = timer.start();
+
+	std::this_thread::sleep_for(100ms);
+
+	timer.reset();
+	auto t2 = timer.start();
+
+	std::this_thread::sleep_for(100ms);
+
+	timer.pause();
+	timer.reset();
+	auto t3 = timer.start();
+
+	std::this_thread::sleep_for(100ms);
+
+	auto t4 = timer.start();
+
+	REQUIRE((t1 >= t2));
+	REQUIRE((t2 == t3));
+	REQUIRE((t4 > 50ms && t4 < 150ms));
 }
 
-TEST_CASE("get_time()") {
-	case_5();
+TEST_CASE("get_elapsed()") {
+	auto timer = sw::stopwatch();
+
+	timer.start();
+
+	std::this_thread::sleep_for(100ms);
+
+	auto t1 = timer.get_elapsed();
+	auto t2 = timer.get_elapsed();
+
+	REQUIRE((t1 > 50ms && t1 < 150ms));
+	REQUIRE((t2 >= t1));
+	REQUIRE(((t2 - t1) < 50ms));
 }
 
-TEST_CASE("Successive method calls") {
+TEST_CASE("Multiple pause() calls") {
+	auto timer = sw::stopwatch();
 
-	SECTION("Method spam 1") {
-		auto timer = sw::stopwatch();
+	timer.start();
 
-		timer.pause();
-		timer.pause();
+	std::this_thread::sleep_for(100ms);
 
-		run_all_with_dirty_stopwatch(timer);
-	}
+	auto t1 = timer.get_elapsed();
 
-	SECTION("Method spam 2") {
-		auto timer = sw::stopwatch();
+	timer.pause();
 
-		timer.start();
-		timer.pause();
-		timer.pause();
+	std::this_thread::sleep_for(100ms);
 
-		run_all_with_dirty_stopwatch(timer);
-	}
+	auto t2 = timer.get_elapsed();
 
-	SECTION("Method spam 3") {
-		auto timer = sw::stopwatch();
+	timer.pause();
 
-		timer.pause();
-		timer.start();
-		timer.pause();
+	std::this_thread::sleep_for(100ms);
 
-		run_all_with_dirty_stopwatch(timer);
-	}
+	auto t3 = timer.get_elapsed();
 
-	SECTION("Method spam 4") {
-		auto timer = sw::stopwatch();
+	timer.start();
 
-		timer.pause();
-		timer.start();
-		timer.pause();
-		timer.pause();
+	std::this_thread::sleep_for(100ms);
 
-		run_all_with_dirty_stopwatch(timer);
-	}
+	auto t4 = timer.get_elapsed();
+
+	REQUIRE((t1 > 50ms && t1 < 150ms));
+	REQUIRE((t2 > 50ms && t2 < 150ms));
+	REQUIRE((t3 == t2));
+	REQUIRE((t4 > t3));
 }

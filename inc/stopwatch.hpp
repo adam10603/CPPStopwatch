@@ -161,37 +161,13 @@ namespace sw {
 	// Stopwatch class for measuring time. The template argument is a clock type to be used.
 	template <typename MonotonicTrivialClock>
 	class basic_stopwatch {
-		using Clock = MonotonicTrivialClock;
-
-		static_assert(Clock::is_steady, "Only monotonic clocks can be used");
-		static_assert(detail::is_trivial_clock_v<Clock>, "Clock must satisfy the requirements of TrivialClock");
-
-		typename Clock::time_point m_start{}, m_pause_start{};
-
-		static constexpr typename Clock::time_point zero_time_point = typename Clock::time_point();
-
-		static constexpr bool has_value(const typename Clock::time_point& t) noexcept {
-			return t != zero_time_point;
-		}
-
-		static constexpr auto get_time_impl(const typename Clock::time_point& now, const typename Clock::time_point& start, const typename Clock::time_point& pause_start) noexcept {
-			if (has_value(pause_start)) {
-				return pause_start - start;
-			}
-
-			if (has_value(start)) {
-				return now - start;
-			}
-
-			return typename Clock::duration();
-		}
-
 	public:
+		using clock = std::enable_if_t<detail::is_trivial_clock_v<MonotonicTrivialClock>, MonotonicTrivialClock>;
 
 		// Starts the stopwatch and returns the elapsed time. If the stopwatch has not been started yet, it starts it and returns a zero duration. If the stopwatch is paused, it resumes it. If the stopwatch is already running, it restarts it from 0 (this works as a "lap" function).
 		auto start() noexcept {
-			const auto now		= Clock::now();
-			const auto snapshot	= get_time_impl(now, m_start, m_pause_start);
+			const auto now		= clock::now();
+			const auto snapshot	= get_elapsed_impl(now, m_start, m_pause_start);
 
 			if (has_value(m_pause_start)) {
 				m_start += now - m_pause_start;
@@ -212,14 +188,13 @@ namespace sw {
 		// Pauses the stopwatch.
 		void pause() noexcept {
 			if (!is_paused()) {
-				m_pause_start = Clock::now();
+				m_pause_start = clock::now();
 			}
 		}
 
-		// Resets the stopwatch. It will be in a paused state with a time of 0 after this.
+		// Resets the stopwatch. It will be in a paused state with a time of 0 after this, just like a fresh instance.
 		void reset() noexcept {
-			m_start			= zero_time_point;
-			m_pause_start	= zero_time_point;
+			*this = basic_stopwatch<clock>();
 		}
 
 		// Indicates if the stopwatch is paused.
@@ -228,14 +203,39 @@ namespace sw {
 		}
 
 		// Returns the elapsed time.
-		[[nodiscard]] auto get_time() const noexcept {
-			return get_time_impl(Clock::now(), m_start, m_pause_start);
+		[[nodiscard]] auto get_elapsed() const noexcept {
+			return get_elapsed_impl(clock::now(), m_start, m_pause_start);
 		}
 
 		// Returns the elapsed time.
 		template <typename Duration>
-		[[nodiscard]] auto get_time() const noexcept {
-			return convert_time<Duration>(get_time_impl(Clock::now(), m_start, m_pause_start));
+		[[nodiscard]] auto get_elapsed() const noexcept {
+			return convert_time<Duration>(get_elapsed_impl(clock::now(), m_start, m_pause_start));
+		}
+
+	private:
+
+		static_assert(clock::is_steady, "Only monotonic clocks can be used");
+		static_assert(detail::is_trivial_clock_v<clock>, "Clock must satisfy the requirements of TrivialClock");
+
+		typename clock::time_point m_start{}, m_pause_start{};
+
+		static constexpr typename clock::time_point zero_time_point = typename clock::time_point();
+
+		static constexpr bool has_value(const typename clock::time_point& t) noexcept {
+			return t != zero_time_point;
+		}
+
+		static constexpr auto get_elapsed_impl(const typename clock::time_point& now, const typename clock::time_point& start, const typename clock::time_point& pause_start) noexcept {
+			if (has_value(pause_start)) {
+				return pause_start - start;
+			}
+
+			if (has_value(start)) {
+				return now - start;
+			}
+
+			return typename clock::duration();
 		}
 	};
 

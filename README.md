@@ -1,5 +1,5 @@
 # C++ Stopwatch ⏱️
-![Version](https://img.shields.io/badge/Version-1.1.2-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/c-cpp.yml/badge.svg)
+![Version](https://img.shields.io/badge/Version-1.2-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
 A portable and flexible header-only C++17 stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
@@ -23,7 +23,7 @@ timer.start();
 
 some_work();
 
-auto elapsed = timer.get_time<sw::d_seconds>();
+auto elapsed = timer.get_elapsed<sw::d_seconds>();
 
 std::cout
     << "Elapsed time: "
@@ -41,10 +41,10 @@ timer.start();
 for (int i{}; i < 5; i++) {
     some_work(i);
 
-    // start() restarts the stopwatch and returns the elapsed time.
-    // The template type determines what unit of time it returns.
+    // start() doubles as a "lap" function.
+    // It restarts the stopwatch and returns the elapsed time.
     // timer.start<T>() a shorthand for sw::convert_time<T>(timer.start())
-    auto elapsed = timer.start<sw::d_milliseconds>();
+    auto elapsed = timer.start<std::chrono::milliseconds>();
 
     std::cout
         << "Iteration "
@@ -64,8 +64,8 @@ timer.start();
 
 some_work();
 
-// timer.get_time<T>() is a shorthand for sw::convert_time<T>(timer.get_time())
-auto elapsed = timer.get_time<sw::duration_components>();
+// timer.get_elapsed<T>() is a shorthand for sw::convert_time<T>(timer.get_elapsed())
+auto elapsed = timer.get_elapsed<sw::duration_components>();
 
 std::cout
     << elapsed.hours
@@ -85,9 +85,9 @@ using namespace std::literals::chrono_literals;
 
 auto starting_time      = 1002ms;
 
-auto components         = sw::convert_time<sw::duration_components>   (starting_time);
-auto round_trip         = sw::convert_time<std::chrono::milliseconds> (components);
-auto round_trip_d_sec   = sw::convert_time<sw::d_seconds>             (round_trip);
+auto components             = sw::convert_time<sw::duration_components>   (starting_time);
+auto round_trip             = sw::convert_time<std::chrono::milliseconds> (components);
+auto round_trip_double_sec  = sw::convert_time<sw::d_seconds>             (round_trip);
 
 // Prints 1 2
 std::cout << components.seconds << ' ' << components.milliseconds << '\n';
@@ -96,7 +96,7 @@ std::cout << components.seconds << ' ' << components.milliseconds << '\n';
 std::cout << round_trip.count() << '\n';
 
 // Prints 1.002
-std::cout << round_trip_d_sec.count() << '\n';
+std::cout << round_trip_double_sec.count() << '\n';
 ```
 
 
@@ -119,6 +119,9 @@ If you still want to, the tests can be executed either with `make` on Linux, or 
   * Code improvements.
 * v1.1.2
   * More code improvements.
+* v1.2
+  * Renamed `get_time()` to `get_elapsed()`. This better reflects that this is a duration.
+  * Added `clock` member type, which is an alias for the underlying clock type.
 
 _____________________
 ![MIT Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/32px-MIT_logo.svg.png) Distributed under the [MIT License](LICENSE).

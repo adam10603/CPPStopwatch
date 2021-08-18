@@ -92,6 +92,14 @@ ___
 The stopwatch class has no constructor defined. After creating an instance, it will be in a paused state with a time of 0. You have to start it manually by calling its [`start()`](#start-method) method.
 ___
 
+#### `clock` member type
+```cpp
+template <typename MonotonicTrivialClock>
+basic_stopwatch<MonotonicTrivialClock>::clock; // MonotonicTrivialClock
+```
+This is simply a type alias for the clock type that's being used.
+___
+
 #### `start()` method
 ```cpp
 MonotonicTrivialClock::duration start();
