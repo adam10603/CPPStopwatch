@@ -8,12 +8,12 @@ Just include `stopwatch.hpp` in your project and you can use it right away.
 It doesn't rely on platform-specific functionality, so it will work on any platform with a C++17 compiler.
 
 
-## Why Need Another One?
+## Why Use This One?
 
 
 There are many examples of stopwatch classes online, but a lot of the ones I've seen had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions and arithmetic, and more. This is why I decided to implement one in a way I see more appropriate.
 
-Highlights:
+#### Highlights:
   * Very simple yet flexible API.
   * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
   * A custom `duration_components` type for easy formatted output.
