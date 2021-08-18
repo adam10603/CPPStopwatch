@@ -14,7 +14,7 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Purpose
 
 
-A lot of examples I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions, and more. This is why I decided to implement one in a way I see more fit. I mostly made this for myself, but I hope others find it just as useful.
+A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), non-standard code, unsafe conversions, and more. This is why I decided to implement one in a way I see more fit. I mostly made this for myself, but I hope others find it just as useful.
 
 #### Highlights:
   * Very simple yet flexible API.
