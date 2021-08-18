@@ -5,11 +5,13 @@ on:
     paths:
       - 'inc/**'
       - 'tests/**'
+      - '.github/workflows/**'
     branches: [ main ]
   pull_request:
     paths:
       - 'inc/**'
       - 'tests/**'
+      - '.github/workflows/**'
     branches: [ main ]
 
 jobs:
