@@ -15,7 +15,7 @@ Note that everything lives inside the `sw` namespace, but the namespace is being
     * [`pause()` method](#pause-method)
     * [`reset()` method](#reset-method)
     * [`is_paused()` method](#is_paused-method)
-    * [`get_time()` method](#get_time-method)
+    * [`get_elapsed()` method](#get_elapsed-method)
 
 
 ### Standalone Types and Functions
@@ -140,15 +140,15 @@ ___
 Indicates if the stopwatch is paused. While paused, the elapsed time is frozen until the stopwatch is resumed or reset.
 ___
 
-#### `get_time()` method
+#### `get_elapsed()` method
 ```cpp
-[[nodiscard]] MonotonicTrivialClock::duration get_time();
+[[nodiscard]] MonotonicTrivialClock::duration get_elapsed();
 
 template <typename Duration>
-[[nodiscard]] Duration get_time();
+[[nodiscard]] Duration get_elapsed();
 ```
 Returns the elapsed time.
 
 The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration). The non-template version uses the clock's own duration type.
 
-The templated version is a shorthand for [`convert_time<Duration>(MySW.get_time())`](#convert_time-utility).
+The templated version is a shorthand for [`convert_time<Duration>(MySW.get_elapsed())`](#convert_time-utility).
