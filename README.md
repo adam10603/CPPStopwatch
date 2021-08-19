@@ -14,7 +14,7 @@ You can use it on any platform with a C++17 compiler, as it doesn't rely on any 
 ## Purpose
 
 
-A lot of C++ stopwatch classes I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, [inefficient code generation](https://gfycat.com/YellowFrighteningBellsnake) and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others will find it useful as well.
+A lot of C++ stopwatch classes I've seen online have a questionable implementation. Many have problems like using non-monotonic clocks ([`chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, [inefficient code generation](https://gfycat.com/YellowFrighteningBellsnake) and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others will find it useful as well.
 
 #### Highlights:
   * Simple but flexible API.
