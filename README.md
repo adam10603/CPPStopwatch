@@ -1,7 +1,7 @@
 # C++ Stopwatch ⏱️
 ![Version](https://img.shields.io/badge/Version-1.2.1-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
-A portable and flexible header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
+A portable and flexible header-only C++ stopwatch class compatible with [`chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
 Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use it right away.
 
@@ -14,16 +14,16 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Purpose
 
 
-A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, [inefficient code generation](https://gfycat.com/YellowFrighteningBellsnake) and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others will find it useful as well.
+A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, [inefficient code generation](https://gfycat.com/YellowFrighteningBellsnake) and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others will find it useful as well.
 
 #### Highlights:
   * Simple but flexible API.
   * [Efficient code generation](https://i.imgur.com/HV8uicb.png). Most compilers can optimize the library away entirely.
-  * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
+  * Compatibility with [`chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
   * A custom `duration_components` type to help with formatted output.
   * Option to use any clock type via a template argument.
-    * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
-  * Type-safety and correctness through using [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
+    * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
+  * Type-safety and correctness through using [`chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
 
 
 ## Examples
@@ -138,7 +138,7 @@ If you still want to, the tests can be executed either with `make` on Linux, or 
   * Renamed the `get_time()` method to `get_elapsed()`. This better reflects that this is a duration.
   * Added `clock` member type to the class, which is an alias for the underlying clock type.
 * v1.2.1
-  * Removed a restriction in `convert_time()` that wouldn't allow a `std::chrono::duration` type to be converted to the same type.
+  * Removed a restriction in `convert_time()` that wouldn't allow a `chrono::duration` type to be converted to the same type.
 
 _____________________
 ![MIT Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/MIT_logo.svg/32px-MIT_logo.svg.png) Distributed under the [MIT License](LICENSE).
