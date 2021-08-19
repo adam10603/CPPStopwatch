@@ -21,5 +21,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: make
+    - name: Building and running tests
       run: cd tests && make
