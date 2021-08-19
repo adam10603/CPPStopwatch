@@ -5,7 +5,7 @@ A portable and flexible header-only C++ stopwatch class compatible with [`std::c
 
 Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use it right away.
 
-You can use it on any platform with a C++17 compiler, as it doesn't rely on any platform-specific APIs.
+It works on any platform with a C++17 compiler, as it doesn't rely on any platform-specific APIs.
 
 
 ## [API Reference Page 🔗](Reference.md)
@@ -98,7 +98,7 @@ std::cout
 ```cpp
 using namespace std::literals::chrono_literals;
 
-auto starting_time      = 1002ms;
+auto starting_time          = 1002ms;
 
 auto components             = sw::convert_time<sw::duration_components>   (starting_time);
 auto round_trip             = sw::convert_time<std::chrono::milliseconds> (components);
