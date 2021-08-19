@@ -1,7 +1,7 @@
 # C++ Stopwatch ⏱️
 ![Version](https://img.shields.io/badge/Version-1.2.1-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
-A portable and flexible header-only C++ stopwatch class compatible with [`chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
+A portable and flexible header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
 Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use it right away.
 
