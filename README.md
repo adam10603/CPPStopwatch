@@ -118,7 +118,7 @@ std::cout << round_trip_double_sec.count() << '\n';
 ## Running Tests
 
 
-Tests run automatically after code changes (see [Actions](https://github.com/adam10603/CPPStopwatch/actions/workflows/c-cpp.yml)), so there's no need to run them yourself.
+Tests run automatically after code changes (see [Actions](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml)), so there's no need to run them yourself.
 
 If you still want to, the tests can be executed either with `make` on Linux, or by building the Visual Studio 2019 solution on Windows. They include `-Werror` and `/WX` respectively, alongside with generous warning levels for correctness. The tests use [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
