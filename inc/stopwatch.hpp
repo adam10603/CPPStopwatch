@@ -96,7 +96,7 @@ namespace sw {
 			else extracted = std::chrono::floor<ExtractDuration>(t);
 
 			t -= std::chrono::duration_cast<InputDuration>(extracted);
-			dst = static_cast<std::remove_reference_t<decltype(dst)>>(extracted.count());
+			dst = static_cast<Integer>(extracted.count());
 
 			return t;
 		}
