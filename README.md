@@ -1,7 +1,7 @@
 # C++ Stopwatch ⏱️
 ![Version](https://img.shields.io/badge/Version-1.2.1-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
-A portable, flexible and performant header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono).
+A portable and flexible header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
 Just include [stopwatch.hpp](inc/stopwatch.hpp) in your project and you can use it right away.
 
@@ -14,17 +14,16 @@ It doesn't rely on platform-specific functionality, so it will work on any platf
 ## Purpose
 
 
-A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, inefficient code generation and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others find it useful as well.
+A lot of stopwatches I've seen online had a questionable implementation. Many have issues like using non-monotonic clocks ([`std::chrono::high_resolution_clock`](https://en.cppreference.com/w/cpp/chrono/high_resolution_clock) can be such), having non-standard code, unsafe conversions, [inefficient code generation](https://gfycat.com/YellowFrighteningBellsnake) and more. This is why I wanted to make a more ideal version. It was for myself at first, but I hope others will find it useful as well.
 
 #### Highlights:
-  * Simple yet flexible API.
-  * Zero-overhead. Most compilers can optimize the library away entirely.
+  * Simple but flexible API.
+  * [Efficient code generation](https://i.imgur.com/HV8uicb.png). Most compilers can optimize the library away entirely.
   * Compatibility with [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration) types.
-  * A custom `duration_components` type that helps with formatted output.
-  * Option to use any clock type via a template parameter.
+  * A custom `duration_components` type to help with formatted output.
+  * Option to use any clock type via a template argument.
     * If you don't need this, `stopwatch` is a ready-to-go typedef that uses [`std::chrono::steady_clock`](https://en.cppreference.com/w/cpp/chrono/steady_clock).
   * Type-safety and correctness through using [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) utilities (no hand-written arithmetic).
-  * Verified with tests using [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
 
 ## Examples
@@ -119,7 +118,7 @@ std::cout << round_trip_double_sec.count() << '\n';
 ## Running Tests
 
 
-Tests are automatically executed upon every commit (see [Actions](https://github.com/adam10603/CPPStopwatch/actions/workflows/c-cpp.yml)), so there's no need to run them yourself.
+Tests are automated with each code change (see [Actions](https://github.com/adam10603/CPPStopwatch/actions/workflows/c-cpp.yml)), so there's no need to run them yourself.
 
 If you still want to, the tests can be executed either with `make` on Linux, or by building the Visual Studio 2019 solution on Windows. They include `-Werror` and `/WX` respectively, alongside with generous warning levels for correctness. The tests use [Catch2 v2](https://github.com/catchorg/Catch2/tree/v2.x).
 
