@@ -218,9 +218,9 @@ namespace sw {
 		static_assert(clock::is_steady, "Only monotonic clocks can be used");
 		static_assert(detail::is_trivial_clock_v<clock>, "Clock must satisfy the requirements of TrivialClock");
 
-		typename clock::time_point m_start{ clock::duration::zero() }, m_pause_start{ clock::duration::zero() };
-
 		static constexpr typename clock::time_point zero_time_point = typename clock::time_point{ clock::duration::zero() };
+
+		typename clock::time_point m_start{ zero_time_point }, m_pause_start{ zero_time_point };
 
 		static constexpr bool has_value(const typename clock::time_point& t) noexcept {
 			return t != zero_time_point;
