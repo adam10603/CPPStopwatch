@@ -158,7 +158,7 @@ namespace sw {
 		return ret;
 	}
 
-	// Stopwatch class for measuring time. The template argument is the clock type to be used.
+	// Stopwatch class for measuring time. The template argument is a clock type to be used.
 	template <typename MonotonicTrivialClock>
 	class basic_stopwatch {
 	public:

@@ -65,8 +65,6 @@ for (int i{}; i < 5; i++) {
     laps.push_back(elapsed);
 }
 
-std::cout << "Laps:\n";
-
 for (auto& lap : laps) std::cout << lap.count() << " ms\n";
 ```
 
