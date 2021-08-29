@@ -49,9 +49,10 @@ std::cout
 ### "Lap" Timing
 
 ```cpp
+auto laps  = std::vector<std::chrono::milliseconds>();
 auto timer = sw::stopwatch();
 
-timer.start();
+laps.reserve(5);
 
 for (int i{}; i < 5; i++) {
     some_work(i);
@@ -61,13 +62,12 @@ for (int i{}; i < 5; i++) {
     // timer.start<T>() a shorthand for sw::convert_time<T>(timer.start())
     auto elapsed = timer.start<std::chrono::milliseconds>();
 
-    std::cout
-        << "Iteration "
-        << i
-        << " : "
-        << elapsed.count()
-        << " ms\n";
+    laps.push_back(elapsed);
 }
+
+std::cout << "Laps:\n";
+
+for (auto& lap : laps) std::cout << lap.count() << " ms\n";
 ```
 
 ### Getting Time Components
