@@ -9,7 +9,6 @@
 
 #include <type_traits>
 #include <chrono>
-#include <ratio>
 
 namespace sw {
 
@@ -130,8 +129,7 @@ namespace sw {
 			}
 
 			return ret;
-		}
-		else {
+		} else {
 			static_assert(detail::is_chrono_duration_v<ToDuration>, "Invalid duration type");
 			
 			if constexpr (std::is_same_v<ToDuration, std::chrono::duration<Rep, Period>>) return t;
