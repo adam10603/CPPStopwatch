@@ -54,6 +54,8 @@ auto timer = sw::stopwatch();
 
 laps.reserve(5);
 
+timer.start();
+
 for (int i{}; i < 5; i++) {
     some_work(i);
 
