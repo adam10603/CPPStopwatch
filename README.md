@@ -61,7 +61,7 @@ for (int i{}; i < 5; i++) {
 
     // start() doubles as a "lap" function.
     // It restarts the stopwatch and returns the elapsed time.
-    // timer.start<T>() a shorthand for sw::convert_time<T>(timer.start())
+    // timer.start<T>() is a shorthand for sw::convert_time<T>(timer.start())
     auto elapsed = timer.start<std::chrono::milliseconds>();
 
     laps.push_back(elapsed);

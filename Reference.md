@@ -116,7 +116,7 @@ If the stopwatch is paused, it resumes it.
 
 The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration). The non-template version uses the clock's own duration type.
 
-The templated version is a shorthand for [`convert_time<Duration>(MySW.start())`](#convert_time-utility).
+The templated version is a shorthand for [`convert_time<Duration>(MySW.start())`](#convert_time-function).
 ___
 
 #### `pause()` method
@@ -151,4 +151,4 @@ Returns the elapsed time.
 
 The templated version returns the time as `Duration`, which can be [`duration_components`](#duration_components-struct) or a version of [`std::chrono::duration`](https://en.cppreference.com/w/cpp/chrono/duration). The non-template version uses the clock's own duration type.
 
-The templated version is a shorthand for [`convert_time<Duration>(MySW.get_elapsed())`](#convert_time-utility).
+The templated version is a shorthand for [`convert_time<Duration>(MySW.get_elapsed())`](#convert_time-function).
