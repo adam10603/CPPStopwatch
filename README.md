@@ -1,5 +1,5 @@
 # C++ Stopwatch ⏱️
-![Version](https://img.shields.io/badge/Version-1.2.2-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
+![Version](https://img.shields.io/badge/Version-1.2.3-blue.svg) ![Tests](https://github.com/adam10603/CPPStopwatch/actions/workflows/tests.yml/badge.svg)
 
 A portable and flexible header-only C++ stopwatch class compatible with [`std::chrono`](https://en.cppreference.com/w/cpp/header/chrono) clocks and types.
 
@@ -140,6 +140,8 @@ If you still want to, the tests can be executed either with `make` on Linux, or 
 * v1.2.1
   * Removed a restriction in `convert_time()` that wouldn't allow a `chrono::duration` type to be converted to the same type.
 * v1.2.2
+  * Slight code changes.
+* v1.2.3
   * Slight code changes.
 
 _____________________

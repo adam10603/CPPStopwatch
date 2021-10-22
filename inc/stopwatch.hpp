@@ -110,7 +110,7 @@ namespace sw {
 		if constexpr (std::is_same_v<ToDuration, duration_components>) {
 			duration_components ret{};
 
-			if (t.count() < Rep()) {
+			if (t.count() < Rep{}) {
 				t = detail::extract_unit<true, detail::chrono_days>			(ret.days,			t);
 				t = detail::extract_unit<true, std::chrono::hours>			(ret.hours,			t);
 				t = detail::extract_unit<true, std::chrono::minutes>		(ret.minutes,		t);
@@ -143,7 +143,7 @@ namespace sw {
 		static_assert(!std::is_same_v<ToDuration, duration_components>, "A conversion to the same type is redundant");
 		static_assert(detail::is_chrono_duration_v<ToDuration>, "Invalid duration type");
 
-		auto ret = ToDuration();
+		auto ret = ToDuration{};
 
 		ret += std::chrono::duration_cast<ToDuration>(detail::chrono_days		(t.days));
 		ret += std::chrono::duration_cast<ToDuration>(std::chrono::hours		(t.hours));
@@ -168,7 +168,7 @@ namespace sw {
 			const auto snapshot	= get_elapsed_impl(now, m_start, m_pause_start);
 
 			if (has_value(m_pause_start)) {
-				m_start += now - m_pause_start;
+				m_start += (now - m_pause_start);
 				m_pause_start = zero_time_point;
 			} else {
 				m_start = now;
@@ -220,11 +220,11 @@ namespace sw {
 
 		typename clock::time_point m_start{ zero_time_point }, m_pause_start{ zero_time_point };
 
-		static constexpr bool has_value(const typename clock::time_point& t) noexcept {
+		static inline bool has_value(const typename clock::time_point& t) noexcept {
 			return t != zero_time_point;
 		}
 
-		static constexpr auto get_elapsed_impl(const typename clock::time_point& now, const typename clock::time_point& start, const typename clock::time_point& pause_start) noexcept {
+		static inline auto get_elapsed_impl(const typename clock::time_point& now, const typename clock::time_point& start, const typename clock::time_point& pause_start) noexcept {
 			if (has_value(pause_start)) {
 				return pause_start - start;
 			}
@@ -233,7 +233,7 @@ namespace sw {
 				return now - start;
 			}
 
-			return typename clock::duration();
+			return clock::duration::zero();
 		}
 	};
 
