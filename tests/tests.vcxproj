@@ -64,24 +64,6 @@
   <ItemGroup>
     <ClCompile Include="src\tests.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\smarc-0.3\filtering.h" />
-    <ClInclude Include="..\src\smarc-0.3\multi_stage.h" />
-    <ClInclude Include="..\src\smarc-0.3\polyfilt.h" />
-    <ClInclude Include="..\src\smarc-0.3\remez_lp.h" />
-    <ClInclude Include="..\src\smarc-0.3\smarc.h" />
-    <ClInclude Include="..\src\smarc-0.3\stage_impl.h" />
-    <ClInclude Include="..\src\detail\bnb.hpp" />
-    <ClInclude Include="..\src\detail\common.hpp" />
-    <ClInclude Include="..\src\detail\fileHelpers.hpp" />
-    <ClInclude Include="..\src\detail\IO.hpp" />
-    <ClInclude Include="..\src\detail\readFile.hpp" />
-    <ClInclude Include="..\src\detail\utils.hpp" />
-    <ClInclude Include="..\src\detail\waveFile.hpp" />
-    <ClInclude Include="..\src\detail\waveRead.hpp" />
-    <ClInclude Include="..\src\detail\waveWrite.hpp" />
-    <ClInclude Include="..\src\waveTools.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
